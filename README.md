@@ -186,3 +186,7 @@ implicit class ExMap[A, B](val in: Map[A, B]) {
   def innerJoinInfer[B2, C](that: Map[A, B2])(f: (B, B2) => C): Map[A, C] //type B2 in f can be infered from that Map[A,B2]
 }
 ```
+
+####16.String interpolation encountering regex.
+s-interpolation does't recoganize triple-qouted string parts.
+see http://stackoverflow.com/a/25633978/5172925
