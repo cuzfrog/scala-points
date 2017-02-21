@@ -190,3 +190,12 @@ implicit class ExMap[A, B](val in: Map[A, B]) {
 ####16.String interpolation encountering regex.
 s-interpolation does't recoganize triple-qouted string parts.
 see http://stackoverflow.com/a/25633978/5172925
+
+####17.Arguments of constructor.
+Arguments with same type should not be put together.
+```scala
+//Bad:
+case class Person(name:String,motto:String,age:Int)
+//Good:
+case class Person(name:String,age:Int,motto:String)
+```
