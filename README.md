@@ -177,7 +177,7 @@ val immutableA=condition match{
 Use condition to choose what trait to mix in, instead of inserting composited ones.
 
 ####14.Recursive sequnce traversal
-Using a cursor of indices instead of shrinking the sequence has a slight performance advantage.
+Using a cursor of indices instead of shrinking the sequence has a slight performance advantage.(scala 2.11.7)
 
 ####15.Type inference in generic method:
 ```scala
@@ -191,11 +191,11 @@ implicit class ExMap[A, B](val in: Map[A, B]) {
 s-interpolation does't recoganize triple-qouted string parts.
 see http://stackoverflow.com/a/25633978/5172925
 
-####17.Arguments of constructor.
-Arguments with same type should not be put together.
+####17.Arguments order of constructor.
+Arguments with same type should not be put together, when there the order does not matter in other perspective.
 ```scala
-//Bad:
+//Some times not so good:
 case class Person(name:String,motto:String,age:Int)
-//Good:
+//Better:
 case class Person(name:String,age:Int,motto:String)
 ```
