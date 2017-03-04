@@ -199,3 +199,6 @@ case class Person(name:String,motto:String,age:Int)
 //Better:
 case class Person(name:String,age:Int,motto:String)
 ```
+
+####18.Beware when using java API.
+The convention of java API may deviate from scala's. e.g. `java.io.File.listFiles` returns `null` when directory cannot be reached. Read java doc carefully.
