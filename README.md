@@ -21,7 +21,7 @@ f(x: =>B):C   now, B is something like lazy val a=(expensive-like fun)
 
 ####5.Enum
 
-a.use case object as enumeration ,well a little more verbose.
+a.(recommended)use case object as enumeration, along side with [enumeratum](https://github.com/lloydmeta/enumeratum)
 
 b.override Enumeration http://stackoverflow.com/questions/2507273/overriding-scala-enumeration-value  so you can inherit your own Value creation method in subclass or inner-class
 
