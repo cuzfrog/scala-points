@@ -202,3 +202,7 @@ case class Person(name:String,age:Int,motto:String)
 
 ####18.Beware when using java API.
 The convention of java API may deviate from scala's. e.g. `java.io.File.listFiles` returns `null` when directory cannot be reached. Read java doc carefully.
+
+
+####19.Duck typing.
+[See this link](https://dzone.com/articles/duck-typing-scala-structural)
