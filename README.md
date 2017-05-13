@@ -213,3 +213,10 @@ Map(k,v).map(e=> e._1 ...  e._2 ...) //bad. low readability
 Map(k,v).map{case (someKey,someValue)=> ...} //good.
 ```
 Applies to Seq[TupleN] alike as well.
+
+#### 21.Give public field explicit type signature.
+See [Incremental compilation](http://www.scala-sbt.org/1.0/docs/Understanding-Recompilation.html)
+
+Named private fields like `private[packageName]` are also considered as public.
+
+There are exceptions: when type signature makes it too unreadable or ugly, and you can make sure this field won't change often. Well make it a `val` or `final val`
