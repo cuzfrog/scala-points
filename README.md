@@ -207,12 +207,29 @@ The convention of java API may deviate from scala's. e.g. `java.io.File.listFile
 #### 19.Duck typing.
 [See this link](https://dzone.com/articles/duck-typing-scala-structural)
 
-#### 20.Name tuples mapping:
+#### 20.Name tuples mapping(avoid calling ._N on Tuples):
 ```scala
 Map(k,v).map(e=> e._1 ...  e._2 ...) //bad. low readability
 Map(k,v).map{case (someKey,someValue)=> ...} //good.
 ```
 Applies to Seq[TupleN] alike as well.
+
+```scala
+def methodThatReturnsTuple():(A,B,C)
+
+val abc = methodThatReturnsTuple()
+
+//context: when consume the tuple as a whole:
+def consume1(abc:ABC)
+consume1(abc) //no problem
+
+//context: when consume part of the tuple:
+def comsume2(a:A,b:B)
+consume2(abc._1,abc._2) //bad
+
+val (a,b,_) = methodThatReturnsTuple()
+consume2(a,b) //good.
+```
 
 #### 21.Give public field explicit type signature.
 See [Incremental compilation](http://www.scala-sbt.org/1.0/docs/Understanding-Recompilation.html)
