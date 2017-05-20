@@ -237,3 +237,21 @@ See [Incremental compilation](http://www.scala-sbt.org/1.0/docs/Understanding-Re
 Named private fields like `private[packageName]` are also considered as public.
 
 There are exceptions: when type signature makes it too unreadable or ugly, and you can make sure this field won't change often. Well make it a `val` or `final val`
+
+#### 22.Align overloaded methods (if you have to overload).
+```scala
+def method1(a:A)(b:B)
+def method1(b:B)
+//legal but bad. What if you want to add one more arg group:
+def method1(a:A)(b:B)(implicit c:C)
+def method1(b:B)(implicit c:C)
+
+method1(aOrb)(bOrc) //What?
+
+//Align them:
+def method2(a:A)(b:B)(implicit c:C)
+def method2()(b:B)(implicit c:C)
+
+method2()(b) //clear.
+```
+
