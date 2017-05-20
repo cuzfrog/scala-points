@@ -19,7 +19,7 @@ simply enter Preferences-> Mylyn  disable any Auto*
 
 f(x: =>B):C   now, B is something like lazy val a=(expensive-like fun)
 
-####5.Enum
+#### 5.Enum
 
 a.(recommended)use case object as enumeration, along side with [enumeratum](https://github.com/lloydmeta/enumeratum)
 
