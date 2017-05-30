@@ -1,5 +1,6 @@
-# scala-points
+# Scala-points
 
+This is my complements to twitter's [Effective Scala](http://twitter.github.io/effectivescala/)
 
 #### 1.val initialization order:
 http://docs.scala-lang.org/tutorials/FAQ/initialization-order.html
