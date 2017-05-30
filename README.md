@@ -255,4 +255,5 @@ def method2()(b:B)(implicit c:C)
 
 method2()(b) //clear.
 ```
-
+#### 23.Returning the "Current" Type in Scala (Restriction on return subtype.)
+see: http://tpolecat.github.io/2015/04/29/f-bounds.html
