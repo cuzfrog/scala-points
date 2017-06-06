@@ -31,20 +31,6 @@ b.override Enumeration http://stackoverflow.com/questions/2507273/overriding-sca
 
 #### 6.evaluation style
 ```scala
-//BAD: 
-val a={
-  val b=expensiveFunction  //temperary val
-  b
-} //everytime access a, b is calculated
-//GOOD:(unchecked20160301)
-def fun={
-  val b=expensiveFunction  //temperary val
-  b
-}
-val a=fun
-```
-
-```scala
 //BAD:
 val fun=expensiveFunction.cheapFunction(_:T)  //everytime access fun, both functions are calculated
 //GOOD:
