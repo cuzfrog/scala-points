@@ -1,6 +1,9 @@
 # Scala-points
 
-This is my complements to twitter's [Effective Scala](http://twitter.github.io/effectivescala/)
+This is my complements to twitter's [Effective Scala](http://twitter.github.io/effectivescala/) and more:
+* [Databricks Scala Style](https://github.com/databricks/scala-style-guide)
+
+-------------------
 
 #### 1.val initialization order:
 http://docs.scala-lang.org/tutorials/FAQ/initialization-order.html
@@ -257,3 +260,27 @@ method2()(b) //clear.
 ```
 #### 23.Returning the "Current" Type in Scala (Restriction on return subtype.)
 see: http://tpolecat.github.io/2015/04/29/f-bounds.html
+
+#### 24.Proper use of "return".
+see first: http://tpolecat.github.io/2014/05/09/return.html
+
+However when `return` is used to control flow on behalf of `require(condition,"exception msg")`:
+```scala
+//pseudocode:
+def check(cred:Credential):Boolean = {
+  if(pre-condition-check1) return false
+  if(pre-condition-check2) return false
+  
+  //specific-check..
+}
+```
+it is more readable than:
+```scala
+def check(cred:Credential):Boolean = {
+  if(pre-condition-check1) false
+  else if(pre-condition-check2) false
+  else {
+    //specific-check..
+  } 
+}
+```
