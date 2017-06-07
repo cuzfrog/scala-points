@@ -247,7 +247,7 @@ method2()(b) //clear.
 #### 23.Returning the "Current" Type in Scala (Restriction on return subtype.)
 see: http://tpolecat.github.io/2015/04/29/f-bounds.html
 
-#### 24.Proper use of "return".
+#### 24.Only use "return"s as guards.
 see first: http://tpolecat.github.io/2014/05/09/return.html
 
 However when `return` is used to control flow on behalf of `require(condition,"exception msg")`:
