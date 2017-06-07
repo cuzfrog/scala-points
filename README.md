@@ -13,6 +13,8 @@ when override hashCode, make sure every val involved is not null.
 #### 2.pitfall of mapValues and filterNot etc.
 https://issues.scala-lang.org/browse/SI-4776
 
+Similar: `Map.keySet`, `Map.values`
+
 some methods do not create new map, but instead, create a MapView
 
 #### (Deprecated)3.disable Mylyn in eclipse to speed up scala compiling.
