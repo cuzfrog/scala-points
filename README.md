@@ -2,6 +2,7 @@
 
 This is my complements to twitter's [Effective Scala](http://twitter.github.io/effectivescala/) and more:
 * [Databricks Scala Style](https://github.com/databricks/scala-style-guide)
+* [A list of code warts](http://www.wartremover.org/doc/warts.html)
 
 -------------------
 
