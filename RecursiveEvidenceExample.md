@@ -1,4 +1,4 @@
-#### Recursive TypeClass Example
+#### Recursive type evidence example
 
 ```scala
 //typeclass:
