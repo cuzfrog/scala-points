@@ -273,3 +273,16 @@ def check(cred:Credential):Boolean = {
   } 
 }
 ```
+
+#### 25.Use helper recusive function to create recusive type evidence.
+
+```scala
+case class Structure(name: String, children: Seq[Structure] = Nil)
+object Structure {
+  implicit val evidence: TypeClass[Structure] = (a: Structure) => {
+     //one cannot recusively use this evidence.
+  }
+}
+```
+Use a helper function to help: [example](RecursiveEvidenceExample.md)
+
