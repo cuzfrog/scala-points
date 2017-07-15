@@ -305,14 +305,15 @@ def method[T](mandatory:String, optional:T = null) //able to compile but bad. nu
 def method[T](mandatory:String, optional:T = ()) //not compile, Unit is not a type of T
 def method[T](mandatory:String, optional:T = Nothing) //not compile, scala does not have an instance of Nothing
 ```
-Use a helper `def` combined with non-strict-param(call-by-name) to provide empty value:
+1. Use a helper `def` combined with non-strict-param(call-by-name) to provide empty value:
 ```scala
 private def Empty: Nothing = throw new IllegalArgumentException("Empty default value called.")
 def method[T](mandatory:String, optional: => T = Empty) 
 //yeah! Codes compile and client will not see null or know what happened.
 ```
-But notice, you need to use `try`/`Try` to check this `optional`.`
-We could check type `T` exhaustively to manually provide empty value:
+But notice, you need to use `try`/`Try` to check this `optional`.
+
+2. We could check type `T` exhaustively to manually provide empty value:
 ```scala
 def method[T: ClassTag](mandatory:String, optional: => T = Empty) 
 private def Empty[T: ClassTag]: T ={
@@ -328,7 +329,7 @@ private def Empty[T: ClassTag]: T ={
 //stupid, but does solve some of the problem.
 ```
 
-Macro is the ultimate solution:
+3. Macro is the ultimate solution:
 ```scala
 private def Empty: Nothing = throw new AssertionError("This should not be triggered.")
 def method[T](mandatory:String, optional: => T = Empty) = macro MacroImpl.method
