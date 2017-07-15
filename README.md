@@ -286,3 +286,51 @@ object Structure {
 ```
 Use a helper function to help: [example](RecursiveEvidenceExample.md)
 
+#### 26.Default empty generic parameter without Option.
+
+Consider an interface method that you provide to client user:
+```scala
+def method[T](mandatory:String, optional:T = some-default-value) //how to make this optional
+```
+Of course, you can use an `Option`:
+```scala
+def method[T](mandatory:String, optional:Option[T] = None)
+//client usage:
+method("sth",Option(myValue)) //clients don't need to worry about null value of "myValue", good!
+```
+But some clients consider `Option(myValue)` as a bit verbose and want you not to use it. 
+Now, what the `method` would look like?
+```scala
+def method[T](mandatory:String, optional:T = null) //able to compile but bad. null is explicitly used.
+def method[T](mandatory:String, optional:T = ()) //not compile, Unit is not a type of T
+def method[T](mandatory:String, optional:T = Nothing) //not compile, scala does not have an instance of Nothing
+```
+Use a helper `def` combined with non-strict-param(call-by-name) to provide empty value:
+```scala
+private def Empty: Nothing = throw new IllegalArgumentException("Empty default value called.")
+def method[T](mandatory:String, optional: => T = Empty) 
+//yeah! Codes compile and client will not see null or know what happened.
+```
+But notice, you need to use `try`/`Try` to check this `optional`.`
+We could check type `T` exhaustively to manually provide empty value:
+```scala
+def method[T: ClassTag](mandatory:String, optional: => T = Empty) 
+private def Empty[T: ClassTag]: T ={
+    val rc = implicitly[ClassTag[T]].runtimeClass
+    val empty = rc match{
+      case rc if rc == classOf[String] => ""
+      case rc if rc == classOf[Int] => 0
+      //etc...
+      case rc => throw new AssertionError(s"$rc is not supported!")
+    }
+    empty.asInstanceOf[T]
+}
+//stupid, but does solve some of the problem.
+```
+
+Macro is the ultimate solution:
+```scala
+private def Empty: Nothing = throw new AssertionError("This should not be triggered.")
+def method[T](mandatory:String, optional: => T = Empty) = macro MacroImpl.method
+//method parameters are checked and manipulated at client's compile time.
+```
