@@ -328,8 +328,19 @@ private def Empty[T: ClassTag]: T ={
 }
 //stupid, but does solve some of the problem.
 ```
+3. Use a custom Option class with implicit conversion:
+```scala
+def method[T: ClassTag](mandatory:String, optional: OptionParam[T] = NoneParam) 
 
-3. Macro is the ultimate solution:
+trait OptionParam[+T]
+case class SomeParam[T](value:T) extends OptionParam[T]
+case object NoneParam extends OptionParam[Nothing]
+object OptionParam{
+  implicit def enclose[T](v: T): OptionParam[T] = if(v == null) NoneParam else SomeParam(v)
+}
+```
+
+4. Macro is the ultimate solution:
 ```scala
 private def Empty: Nothing = throw new AssertionError("This should not be triggered.")
 def method[T](mandatory:String, optional: => T = Empty) = macro MacroImpl.method
