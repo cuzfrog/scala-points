@@ -337,6 +337,7 @@ case class SomeParam[T](value:T) extends OptionParam[T]
 case object NoneParam extends OptionParam[Nothing]
 object OptionParam{
   implicit def enclose[T](v: T): OptionParam[T] = if(v == null) NoneParam else SomeParam(v)
+                                                 //or: Option(v) match{...
 }
 ```
 
