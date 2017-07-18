@@ -358,3 +358,23 @@ Is `A`'s scope same as `B`'s?
 Well, they are different. `B` can be accessed from package object `pkg`, while `A` cannot.
 More signaficantly, they are treated differently by incremental compiler.
 Do not add name to private modifier, unless it's needed.
+
+#### 28.Use explicit type or implicit conversion to guard toString.
+```scala
+def consume(v:String)  //An api that only accept String.
+
+val myType = {...} //Return "MyType" rather than String, while MyType.toString makes sense.
+consume(myType.toString) //Bad! 
+```
+When `myType` is not `MyType`, you lose compile time type checking. Notice `toString` is a method of `Any`.
+```scala
+val myType:MyType = {...} //Good! Compile time type check occurs here.
+consume(myType.toString)
+```
+```scala
+val myType = {...}
+consume(myType) //Succinct! When type is wrong, conversion will not apply.
+
+private implicit def myType2String(in:MyType):String = in.toString
+```
+
