@@ -347,17 +347,6 @@ private def Empty: Nothing = throw new AssertionError("This should not be trigge
 def method[T](mandatory:String, optional: => T = Empty) = macro MacroImpl.method
 //method parameters are checked and manipulated at client's compile time.
 ```
-#### 27.Package private class named or non-named?
-```scala
-package com.github.cuzfrog.pkg
-private class A
-private[pkg] class B
-```
-Is `A`'s scope same as `B`'s?
-
-Well, they are different. `B` can be accessed from package object `pkg`, while `A` cannot.
-More signaficantly, they are treated differently by incremental compiler.
-Do not add name to private modifier, unless it's needed.
 
 #### 28.Use explicit type or implicit conversion to guard toString.
 ```scala
