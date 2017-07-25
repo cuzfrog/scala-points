@@ -348,7 +348,7 @@ def method[T](mandatory:String, optional: => T = Empty) = macro MacroImpl.method
 //method parameters are checked and manipulated at client's compile time.
 ```
 
-#### 28.Use explicit type or implicit conversion to guard toString.
+#### 27.Use explicit type or implicit conversion to guard toString.
 ```scala
 def consume(v:String)  //An api that only accept String.
 
@@ -367,3 +367,47 @@ consume(myType) //Succinct! When type is wrong, conversion will not apply.
 private implicit def myType2String(in:MyType):String = in.toString
 ```
 
+#### 28. Ad hoc subclass check. (subclass check without TypeTag)
+```scala
+  trait SubClassGauge[A, B] {
+    def A_isSubclassOf_B: Boolean
+  }
+
+  implicit class IsSubclassOps[A](a: A) {
+    def isSubclassOf[B](implicit ev: SubClassGauge[A, B]): Boolean = ev.A_isSubclassOf_B
+  }
+
+  trait LowerLevelImplicits {
+    implicit def defaultSubClassGauge[A, B] = new SubClassGauge[A, B] {
+      override def A_isSubclassOf_B: Boolean = false
+    }
+  }
+
+  object Implicits extends LowerLevelImplicits {
+    implicit def subClassGauge[A <: B, B]: SubClassGauge[A, B] = new SubClassGauge[A, B] {
+      override def A_isSubclassOf_B: Boolean = true
+    }
+  }
+
+  trait Prime
+  class NotSuper
+  class Super extends Prime
+  class Sub extends Super
+  class NotSub
+
+import Implicits._
+@ (new Sub).isSubclassOf[NotSuper] 
+res29: Boolean = false
+@ (new Sub).isSubclassOf[Super] 
+res30: Boolean = true
+@ (new Sub).isSubclassOf[Prime] 
+res31: Boolean = true
+@ (new Super).isSubclassOf[Prime] 
+res32: Boolean = true
+@ (new Super).isSubclassOf[Sub] 
+res33: Boolean = false
+@ (new NotSub).isSubclassOf[Super] 
+res34: Boolean = false
+
+
+```
