@@ -180,7 +180,7 @@ implicit class ExMap[A, B](val in: Map[A, B]) {
 }
 ```
 
-#### 16.String interpolation encountering regex.
+#### 16.String interpolation encountered with regex.
 s-interpolation does't recoganize triple-qouted string parts.
 see http://stackoverflow.com/a/25633978/5172925
 
