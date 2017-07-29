@@ -440,7 +440,7 @@ trait UnboxEv[+T, -B, +R] {
 }
 
 trait Confidence
-case class Box[+T](v: Option[T])
+case class Box[+T](v: Option[T]) //v could be private
 trait LowLevelImplicitOfBox {
   this: Box.type =>
   implicit def optionEvidence[T]: UnboxEv[T, Box[T], Option[T]] =
