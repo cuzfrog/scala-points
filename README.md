@@ -455,3 +455,47 @@ object Box extends LowLevelImplicitOfBox {
     }
 }
 ```
+
+#### 30. Use more general argument when pattern matching against trait mixin.
+```scala
+trait A
+class B
+
+@ new B 
+res3: B = ammonite.$sess.cmd1$B@37f627d0
+@ res3.asInstanceOf[B with A] 
+res4: B with A = ammonite.$sess.cmd1$B@37f627d0
+def consume(in:B with A):Unit = println(in) 
+
+@ consume(res4) //it was fooled?
+ammonite.$sess.cmd1$B@37f627d0
+@ consume(res3) //compile error
+```
+What about pattern match:
+```scala
+def consume(in:B with A):Unit = {
+  in match{
+    case a: A => println("with A")
+    case b => println("no A")
+  }
+}
+@ consume(res4) //fooled again?
+with A
+```
+Make parameter more general:
+```scala
+def consume(in:B):Unit = {
+  in match{
+    case a: A => println("with A")
+    case b => println("no A")
+  }
+}
+@ consume(res4) //correct
+no A
+@ new B with A 
+res2: B with A = ammonite.$sess.cmd2$$anon$1@690df641
+@ consume(res2) //correct
+with A
+```
+Last, use `asInstanceOf` with great caution.
+
