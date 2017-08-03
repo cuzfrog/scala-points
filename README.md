@@ -499,3 +499,5 @@ with A
 ```
 Last, use `asInstanceOf` with great caution.
 
+#### 31.Use outer extractor to reuse value in pattern match guards.
+see https://stackoverflow.com/a/3532681/5172925
