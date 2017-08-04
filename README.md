@@ -3,7 +3,7 @@
 This is my complements to twitter's [Effective Scala](http://twitter.github.io/effectivescala/) and more:
 * [Databricks Scala Style](https://github.com/databricks/scala-style-guide)
 * [A list of code warts](http://www.wartremover.org/doc/warts.html) (if some parts look scary, treat them at least as warnings.)
-
+* [Neophyte's Guide](http://danielwestheide.com/scala/neophytes.html)
 -------------------
 
 #### 1.val initialization order:
