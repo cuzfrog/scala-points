@@ -501,3 +501,7 @@ Last, use `asInstanceOf` with great caution.
 
 #### 31.Use outer extractor to reuse value in pattern match guards.
 see https://stackoverflow.com/a/3532681/5172925
+
+#### 32.case class's "copy" method only work with constructor parameters.
+1) copy does not copy internal variables.
+2) copy does not copy mixins.
