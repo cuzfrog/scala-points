@@ -505,3 +505,7 @@ see https://stackoverflow.com/a/3532681/5172925
 #### 32.case class's "copy" method only work with constructor parameters.
 1) copy does not copy internal variables.
 2) copy does not copy mixins.
+
+#### 33.extend `Product with Serializable` to clean inferred type.
+see http://underscore.io/blog/posts/2015/06/04/more-on-sealed.html
+
