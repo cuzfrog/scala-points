@@ -509,3 +509,5 @@ see https://stackoverflow.com/a/3532681/5172925
 #### 33.extend `Product with Serializable` to clean inferred type.
 see http://underscore.io/blog/posts/2015/06/04/more-on-sealed.html
 
+#### 34.Define local def outside enclosing def as possible.
+If inner-def is a function, define it outside to avoid variable interference (and careless errors.)
