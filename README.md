@@ -2,6 +2,7 @@
 
 This is my complements to twitter's [Effective Scala](http://twitter.github.io/effectivescala/) and more:
 * [Databricks Scala Style](https://github.com/databricks/scala-style-guide)
+* [Scala Best Practices](https://github.com/alexandru/scala-best-practices)
 * [A list of code warts](http://www.wartremover.org/doc/warts.html) (if some parts look scary, treat them at least as warnings.)
 * [Neophyte's Guide](http://danielwestheide.com/scala/neophytes.html)
 -------------------
