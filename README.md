@@ -512,3 +512,8 @@ see http://underscore.io/blog/posts/2015/06/04/more-on-sealed.html
 
 #### 34.Define local def outside enclosing def as possible.
 If inner-def is a function, define it outside to avoid variable interference (and careless errors.)
+
+#### 35.Use sequencial data structure on performance intensive tasks.
+ The CPU caches can load chunks of the array into the cache at a time, and have the CPU access the data directly in the CPU cache once loaded. This is not really possible with a linked list where elements are scattered all over the RAM.
+ 
+ [Benchmarking Scala Collections](http://www.lihaoyi.com/post/BenchmarkingScalaCollections.html)
