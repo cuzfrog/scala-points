@@ -517,3 +517,6 @@ If inner-def is a function, define it outside to avoid variable interference (an
  The CPU caches can load chunks of the array into the cache at a time, and have the CPU access the data directly in the CPU cache once loaded. This is not really possible with a linked list where elements are scattered all over the RAM.
  
  [Benchmarking Scala Collections](http://www.lihaoyi.com/post/BenchmarkingScalaCollections.html)
+ 
+#### 36.Beware of java8 Stream
+  `java.util.stream.Stream` has many methods that look like scala's, e.g. `flatMap`. Java `Stream` has state, and methods like `count()` have side-effect. Read doc carefully.
