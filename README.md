@@ -1,6 +1,8 @@
 # Scala-points
 
-This is my complements to twitter's [Effective Scala](http://twitter.github.io/effectivescala/) and more:
+This is my complements to:
+
+* twitter's [Effective Scala](http://twitter.github.io/effectivescala/) and more:
 * [Databricks Scala Style](https://github.com/databricks/scala-style-guide)
 * [Scala Best Practices](https://github.com/alexandru/scala-best-practices)
 * [A list of code warts](http://www.wartremover.org/doc/warts.html) (if some parts look scary, treat them at least as warnings.)
@@ -520,3 +522,5 @@ If inner-def is a function, define it outside to avoid variable interference (an
  
 #### 36.Beware of java8 Stream
   `java.util.stream.Stream` has many methods that look like scala's, e.g. `flatMap`. Java `Stream` has state, and methods like `count()` have side-effect. Read doc carefully.
+
+#### 37.Use java interface in scala project
