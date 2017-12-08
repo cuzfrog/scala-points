@@ -525,3 +525,27 @@ If inner-def is a function, define it outside to avoid variable interference (an
   When reading a file use `Files.lines`, a `Stream` that wraps a `BufferedReader` is returned. The `Stream` throws `UncheckedIOException`. When converting to scala stream, one may use `stream.iterator.asScala`, the properties of a `java.util.stream.Stream` are then passed along to the whatever-scala representation.
 
 #### 37.Use java interface in scala project
+  
+#### 38.Scope limitation
+  We could use typeclass to limit the scope in which a mutable method can be called. 
+  
+```scala
+trait MutableContext[S]
+
+class IamMutable{
+  //...
+  def mutate()(implicit mutableContext: MutableContext[Scope])
+}
+
+{
+  new IamMutable.mutate() //compile time error
+}
+
+{
+  implicit val mutableContext: MutableContext[Scope] = new MutableContext[Scope]{}
+  new IamMutable.mutate() //allowed
+}
+```
+
+  
+  
