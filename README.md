@@ -521,8 +521,10 @@ If inner-def is a function, define it outside to avoid variable interference (an
  [Benchmarking Scala Collections](http://www.lihaoyi.com/post/BenchmarkingScalaCollections.html)
  
 #### 36.Beware of java8 Stream
-  `java.util.stream.Stream` has many methods that look like scala's, e.g. `flatMap`. Java `Stream` has state, and methods like `count()` have side-effect. Read doc carefully.
+  `java.util.stream.Stream` has many methods that look like scala's, e.g. `flatMap`. Java `Stream` is more like views, and methods like `count()` terminates the stream. Read doc carefully.
   When reading a file use `Files.lines`, a `Stream` that wraps a `BufferedReader` is returned. The `Stream` throws `UncheckedIOException`. When converting to scala stream, one may use `stream.iterator.asScala`, the properties of a `java.util.stream.Stream` are then passed along to the whatever-scala representation.
+  
+  `stream.iterator` may not fetch all upstream elements, however `stream.forEach` has a different behavior, which is affected by the implementation of `spliterator`.
 
 #### 37.Use java interface in scala project
   
