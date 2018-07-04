@@ -7,6 +7,10 @@ This is my complements to:
 * [Scala Best Practices](https://github.com/alexandru/scala-best-practices)
 * [A list of code warts](http://www.wartremover.org/doc/warts.html) (if some parts look scary, treat them at least as warnings.)
 * [Neophyte's Guide](http://danielwestheide.com/scala/neophytes.html)
+
+Flavored:
+
+* [www.javamex.com](https://www.javamex.com/) by Neil Coffey
 -------------------
 
 #### 1.val initialization order:
