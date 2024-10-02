@@ -12,6 +12,7 @@ Flavored:
 
 * [www.javamex.com](https://www.javamex.com/) by Neil Coffey
 -------------------
+Items before 40 are experienced in Scala2, I will gradually revise them.
 
 #### 1.val initialization order:
 http://docs.scala-lang.org/tutorials/FAQ/initialization-order.html
