@@ -554,5 +554,8 @@ class IamMutable{
 ```
 
 #### 39. Magnet pattern
-http://spray.io/blog/2012-12-13-the-magnet-pattern/
+https://blog.madhukaraphatak.com/scala-magnet-pattern
+
+#### 40. Strict Equality
+Use `-language:strictEquality`, see [Multiversal equality](https://docs.scala-lang.org/scala3/book/ca-multiversal-equality.html)
   
