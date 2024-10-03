@@ -561,11 +561,7 @@ https://blog.madhukaraphatak.com/scala-magnet-pattern
 Use `-language:strictEquality`, see [Multiversal equality](https://docs.scala-lang.org/scala3/book/ca-multiversal-equality.html)
 
 #### 41. Parameterless method with or without parentheses
-The recommended convention is that if no side effects, it should be without parentheses, so that `def` can be replaced by `val`. 
-It should always return a same value as per immutability from `val`,
-because a side effect free method is a pure function; a pure function returns the same result for a given input,
-the parameterless method always has The same (empty) input.
-
+The recommended convention is that if no side effects, it should be without parentheses, so that `def` can be replaced by `val`/`var`.
 
 In Scala3, the call site must match the method definition:
 ```scala
