@@ -564,7 +564,7 @@ Use `-language:strictEquality`, see [Multiversal equality](https://docs.scala-la
 The recommended convention is that if no side effects, it should be without parentheses, so that `def` can be replaced by `val`. 
 It should always return a same value as per immutability from `val`,
 because a side effect free method is a pure function; a pure function returns the same result for a given input,
-the parameterless method alway has The same (empty) input.
+the parameterless method always has The same (empty) input.
 
 
 In Scala3, the call site must match the method definition:
