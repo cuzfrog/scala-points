@@ -559,4 +559,33 @@ https://blog.madhukaraphatak.com/scala-magnet-pattern
 
 #### 40. Strict Equality
 Use `-language:strictEquality`, see [Multiversal equality](https://docs.scala-lang.org/scala3/book/ca-multiversal-equality.html)
-  
+
+#### 41. Parameterless method with or without parentheses
+The recommended convention is that if no side effects, it should be without parentheses, so that `def` can be replaced by `val`. 
+It should always return a same value as per immutability from `val`,
+because a side effect free method is a pure function; a pure function returns the same result for a given input,
+the parameterless method alway has The same (empty) input.
+
+
+In Scala3, the call site must match the method definition:
+```scala
+scala> def foo = 1
+def foo: Int
+scala> def bar() = 1
+def bar(): Int    
+scala> foo
+val res3: Int = 1                  
+scala> bar
+-- [E100] Syntax Error
+```
+
+But be careful, this is not true when citing Java method:
+```scala
+scala> import java.time.*              
+scala> val f = LocalDate.now // Questionable, side effect (reading external value)
+val f: java.time.LocalDate = 2024-10-03                
+scala> val t = LocalDate.now() // Good, explicitly mark the side effect performed
+val t: java.time.LocalDate = 2024-10-03                  
+scala> val f: () => LocalDate = LocalDate.now
+val f: () => java.time.LocalDate = Lambda/0x000076984050d000@6c9151c1
+```
